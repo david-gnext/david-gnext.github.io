@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 29, 2016, 12:00:26 PM
+    Author     : David JP <david.gnext@gmail.com>
+*/
+
+.login-box img,.login-box h3,h5 {
+    display: inline-block;    
+}
+.login-box h3+img{    
+    position: absolute;
+}
+.login-box img,input,h5,textarea{
+    margin-left: 5%;  
+}
+.box-field {
+    padding : 2px;    
+}
+h5 {
+    width: 100px;
+}
+textarea {
+    width: 48%;
+}
+.button {    
+    margin-left: 10%;
+    transition: background-color .25s ease-in-out;
+}
+input ,textarea{
+    padding : 2% 3%;
+}

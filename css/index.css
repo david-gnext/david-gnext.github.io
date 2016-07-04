@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 29, 2016, 11:36:21 AM
+    Author     : David JP <david.gnext@gmail.com>
+*/
+
+form{
+    padding : 10px;
+    margin : 5px;
+}
+form input {
+    padding : 10px 45px;    
+    display: block;
+    margin-left: 10%;
+}
+#signup_text{
+    color : red;
+    font-style: bold;
+    font-size : 9px;
+}
+#signup_text a {
+    color :appworkspace;   
+    font-size : 1em;
+}

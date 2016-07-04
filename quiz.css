@@ -1,0 +1,385 @@
+body{
+    width : 100%;
+}
+#head-wrapper
+{
+    width: 100%;
+    height: 10%;
+    background: #3b3b3b;
+    position: relative; 
+}
+#header
+{
+    overflow: hidden;
+    height: 60px;
+}
+.header1{
+    font-size: 2em;    
+    height:10%;    
+    text-align: center;
+    width: 100%;
+}
+
+h1{    
+    display: block;
+    color:#fff;
+    line-height: 5px;
+}
+#logo ,#logo h1 a
+{
+    display: block; 
+    text-decoration: none;
+    font-family: 'Kavoon', cursive;
+    text-align: center;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+/** MENU */
+#menu
+{
+    float: right;
+    width: 300px;
+}
+#menu ul
+{
+    top : 0;
+    position : absolute;
+    float: right;
+    padding : 0 2px;    
+    list-style: none;
+    line-height: normal;
+}
+#menu li
+{
+    float: left;
+    margin-left: 60px;
+}
+#menu a
+{
+
+    display: block;
+
+    padding: 2px;
+
+    letter-spacing: 2px;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    font-family: 'Archivo Narrow', sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #FFFFFF;
+
+}
+/*content*/
+#featured {
+    font-family :"Arial Black", "Sans", "Lucida", monospace;
+    color : #008080;
+    font-size : 20px;
+}
+#featured-wrapper
+{
+    overflow: hidden;
+    padding: 30px 0px;
+    background-image: url('images/geometry.png');
+    border-top: 1px solid #E7E7E7;
+    text-align: center;
+}
+
+#featured header
+{
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #333333;
+}
+/*page content*/
+.button{
+
+    margin: 0px auto;
+    padding: 10px 30px;
+    background: #20e1b6;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -o-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 5px rgba(255,255,255, 1);
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Archivo Narrow', sans-serif;
+    color: #FFFFFF;
+
+    width: 300px;
+
+    height: 40px;
+}
+a{
+    font-size: 20px;
+
+    font-weight: 600;
+}
+#content
+{
+    background:#eee;
+    -moz-border-radius:3px;-webkit-border-radius:3px;
+    width: 50%;
+    margin-left : 25%;
+}
+#content div {
+    color : #1d1905;
+    border : 2px solid #fff;
+    padding :10px;
+    border:1px solid #aaa;    
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    text-align: center;
+}
+#menu a:hover
+
+{
+    text-decoration: none;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #ededed;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+}
+.style1 {
+    color: #FFFFFF;
+    font-weight: 400;
+    background: #a07227;
+    margin:1px auto;
+    padding:0 auto;
+    width: auto;
+    height: 100%;
+}
+.style111 {
+    color: #FFFFFF;
+    font-weight: 400;
+    background: #20e1b6;
+    margin:1px auto;
+    padding:0 auto;
+    width: 1000px ;
+    height: 50px;
+}
+.style1 > div{
+    width:200px;
+    height: 20px;
+    float:left;
+}
+.style1 input{
+    margin-top:10px;
+}
+.style1 input[type=submit]{
+    margin: 10px 200px !important;
+}
+/*use in log in design*/
+.style2{
+    color: #ffffff;
+    font-weight: bold;
+    background: #aaaec0;
+}
+.navl{
+    width: 180px;
+    height:100px;
+    float: left;
+    background: #ff9029;
+    opacity: 0.5;
+    color:white;   
+    border-right: 3px dashed #fff;
+}
+.style4 {
+    color: #ffffff;
+    font-weight: bold;
+    background: #000;
+}
+.style5 {color:#fff;
+         border-bottom: 1px solid red;
+         background: linear-gradient(20deg, #4f5964 0%, #5f6975 40%);
+}
+.style6 {color: #757575;
+         background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);
+         box-shadow: 0px 0px 0px 9px rgba(0,0,0,0.15);
+}
+.style7 {
+    color: #daff97;
+    font-weight: bold;
+    background:#dde293;
+    width:300px;
+    border-bottom: 1px solid #fa9090;
+    margin: 5px auto;
+    -webkit-animation-name:change;
+    -webkit-animation-duration:4s;
+    -webkit-animation-iteration-count: 90;
+}
+
+.style8 {
+    top:0px;
+    color: #6633CC;
+    font-weight: bold;
+    margin:auto 10px;
+    background:linear-gradient(190deg,#dde293 0%,#829faa 100%);  
+    font-size:25px; //only used for index.php after log in success
+}
+/*for log in desgin*/
+.boxx{width:160px;height:20px;margin-left:0px;bottom: 5px;}
+/*for box design*/
+.style16{
+    background:linear-gradient(90deg,#bcbc71 23%,#54cacf 100%);  
+    box-shadow: 5px 0px 10px 2px #111828;
+}   
+.coll a:hover  {
+    text-decoration: none; cursor:alias; 
+    color:#faff00;
+}
+.result_tb{ 
+    font-family:Comic Sans MS;
+    font-size: 20px;
+}
+/*for select subject to take exam*/
+.coll td:hover{
+
+    width:250px;
+    height: 40px;}
+.coll td{
+    width:250px;height: 40px;
+}
+.coll th{
+    height: 40px;
+    background: brown;
+}
+/*--------------*****--------------------*/
+a {
+
+    color: #330066;
+    text-decoration: none;
+}
+a:hover {
+    color: #aaa;
+    text-decoration: underline;
+}
+a.linkcol{
+    color:green !important;    //index file link color
+}
+/*.memcol{
+    color:#fff000 !important;    
+    }*/
+a:visited {
+
+    color: #fc6748;
+    text-decoration: none;
+    font-weight: bolder;
+
+}
+.head1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #aaa;
+    text-align: center;
+    margin-top : 15%;
+    font-weight: bold;
+}
+/*for table color cell*/
+#col tr:nth-child(odd){
+    background: #fffdde;
+
+}
+#col tr:nth-child(even){
+    background: #fff787; 
+}
+table#col{
+    margin-left: 300px;width:600px;
+}
+
+.errors {
+
+    color: #FF0000;
+    font-weight: bold;
+}
+.tot {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #000000;
+}
+.tot {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;    
+    background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);
+    box-shadow: 0px 0px 0px 9px rgba(0,0,0,0.15);
+    color: #000000;
+
+}
+.tans {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;    
+    background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);
+    box-shadow: 0px 0px 0px 9px rgba(0,0,0,0.15);
+    color:#00CC66 ;
+}
+.fans {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;    
+    background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);
+    box-shadow: 0px 0px 0px 9px rgba(0,0,0,0.15);
+    font-weight: bold;
+    color:#FF0000 ;
+}
+.pass{
+    background: green;
+    color: #fff;    
+
+
+}
+.fail{    
+    color:#ffffff;
+    background:  red;    
+    // background:linear-gradient(180deg,red 0%,#bbbbbb 100%);
+
+}
+.login-box{
+    margin: 5% auto;
+    padding: 10px 30px;
+    background: #09aac4; 
+    transition: background-color .25s ease-in-out;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 5px rgba(255,255,255, 1);
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Archivo Narrow', sans-serif;
+    color: #FFFFFF;       
+    width: 350px;
+    height: 100%;
+}
+#error_message {
+    position: absolute;
+    top : 30%;
+    left : 25%;
+    width : 40%;
+    background: #fff;
+    font-family: 'Courier New';
+    font-size: 18px;
+    font-weight: 900;
+    color : #800000;
+    padding : 1% 0;
+    padding-left: 10%;            
+    border-radius: 20px;
+   -webkit-background-clip: padding-box; 
+  -moz-background-clip:    padding; 
+  background-clip:         padding-box;
+}
