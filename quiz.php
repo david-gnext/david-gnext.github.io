@@ -76,7 +76,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                         <script>alert('You are Fail,Try more your lesson!!!');</script>
                         <?php
                     }                    
-                    mysql_query("insert into mst_result(login,test_id,test_date,score) values('$login','$tid','" . date("d/m/Y") . "','" . $_SESSION['trueans'] . "')") or die(mysql_error());
+                    mysql_query("insert into mst_result(login,test_id,test_date,score) values('".$_SESSION['user']."','$tid','" . date("d/m/Y") . "','" . $_SESSION['trueans'] . "')") or die(mysql_error());
                     echo "<h1 align=center><a href=review.php> Review Question</a> </h1></div>";
                     unset($_SESSION['qn']);
                     unset($_SESSION['sid']);
@@ -101,16 +101,17 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                 $n = $_SESSION['qn'] + 1;
         echo "<div id=featured_wrapper><center><h3>Que " . $n . ": $row[2]</h3></center></div>";
         echo "<div><input type='radio' name='ans' value='1' id='a1'>$row[3]</div>";
-        echo "<div><input type='radio' name='ans' value='2'id='a2'>$row[4]</div>";
+        echo "<div><input type='radio' name='ans' value='2' id='a2'>$row[4]</div>";
         echo "<div><input type='radio' name='ans' value='3' id='a3'>$row[5]</div>";
         echo "<div><input type='radio' name='ans' value='4' id='a4'>$row[6]</div>";
 
         if ($_SESSION['qn'] < mysql_num_rows($rs) - 1) {
-            echo "<center><input type='submit' name='submit' value='Next Question' id='next'></center>";
+            echo "<center><input type='submit' name='submit' value='Next Question'></center>";
         } else {
             echo "<center><input type='submit' name='submit' value='Get Result'></center>";
         }
         echo "</form>";
         ?>                  
+         <div id="time"></div>
     </body>
 </html>

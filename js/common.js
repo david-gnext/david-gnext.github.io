@@ -22,9 +22,5 @@ $(document).ready(function(){
     },function(){
         $(this).parent('div').css("background","");
     });
-    //next click 
-    $('#next').click(function(e){
-        e.preventDefault();
-        Common.error("You must click one answer for that question");
-    });
+    
 });

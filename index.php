@@ -21,6 +21,7 @@ session_start();
                 $_SESSION['alogin'] = false;
                 exit;
             }
+            $_SESSION['user'] = $user;
             $_SESSION['alogin'] = true;
         } 
         if (isset($_SESSION['alogin'])) {
