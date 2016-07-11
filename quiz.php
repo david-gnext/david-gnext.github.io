@@ -23,15 +23,19 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
 <html>
     <head>
         <title>Online Quiz</title>
+        <?php         
+        if(!isset($_POST['js'])) {        
+         ?>        
         <script src="jquery.min.js"></script><script src="jquery-ui.js"></script>
         <script src="js/common.js"></script>
         <script src="js/quiz.js"></script>
+        <?php } ?>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <link href="quiz.css" rel="stylesheet" type="text/css">
         <link href="css/quiz.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body onload="time()"> 
+    <body> 
         <?php
         include("header.php");
 
@@ -49,7 +53,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                 if ($_POST['submit'] == 'Next Question' && isset($ans)) {
                     mysql_data_seek($rs, $_SESSION['qn']);
                     $row = mysql_fetch_row($rs);
-                    mysql_query("insert into mst_useranswer(sess_id,test_id,que_des,ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[3]','$row[4]','$row[5]', '$row[6]','$row[7]','$ans')") or die(mysql_error());
+                    mysql_query("insert into mst_useranswer(sess_id,test_id,que_des,ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')") or die(mysql_error());
                     if ($ans == $row[7]) {
                         $_SESSION['trueans'] = $_SESSION['trueans'] + 1;
                     }
@@ -57,8 +61,8 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                 } else if ($_POST['submit'] == 'Get Result' && isset($ans)) {
                     mysql_data_seek($rs, $_SESSION['qn']);
                     $row = mysql_fetch_row($rs);
-                    mysql_query("insert into mst_useranswer(sess_id, test_id, que_des, ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[3]','$row[4]','$row[5]', '$row[6]','$row[7]','$ans')") or die(mysql_error());
-                    if ($ans == $row[7]) {
+                    mysql_query("insert into mst_useranswer(sess_id, test_id, que_des, ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')") or die(mysql_error());
+                    if ($ans == $row[9]) {
                         $_SESSION['trueans'] = $_SESSION['trueans'] + 1;
                     }
                     echo "<div id=featured-wrapper> Result</div>";
@@ -77,7 +81,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                         <?php
                     }                    
                     mysql_query("insert into mst_result(login,test_id,test_date,score) values('".$_SESSION['user']."','$tid','" . date("d/m/Y") . "','" . $_SESSION['trueans'] . "')") or die(mysql_error());
-                    echo "<h1 align=center><a href=review.php> Review Question</a> </h1></div>";
+//                    echo "<h1 align=center><a href=review.php> Review Question</a> </h1></div>";
                     unset($_SESSION['qn']);
                     unset($_SESSION['sid']);
                     unset($_SESSION['tid']);
@@ -99,11 +103,11 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
         $row = mysql_fetch_row($rs);        
         echo "<form name='myfm' method='POST' action='quiz.php' class='login-box'>";
                 $n = $_SESSION['qn'] + 1;
-        echo "<div id=featured_wrapper><center><h3>Que " . $n . ": $row[2]</h3></center></div>";
-        echo "<div><input type='radio' name='ans' value='1' id='a1'>$row[3]</div>";
-        echo "<div><input type='radio' name='ans' value='2' id='a2'>$row[4]</div>";
-        echo "<div><input type='radio' name='ans' value='3' id='a3'>$row[5]</div>";
-        echo "<div><input type='radio' name='ans' value='4' id='a4'>$row[6]</div>";
+        echo "<div id=featured_wrapper><center><h3>Que " . $n . ":".(($row[2] == "") ? "<img src='data:image/jpeg;base64,".base64_encode($row[4])."' >" : $row[2]) ."</h3></center></div>";
+        echo "<div><input type='radio' name='ans' value='1' id='a1'>$row[5]</div>";
+        echo "<div><input type='radio' name='ans' value='2' id='a2'>$row[6]</div>";
+        echo "<div><input type='radio' name='ans' value='3' id='a3'>$row[7]</div>";
+        echo "<div><input type='radio' name='ans' value='4' id='a4'>$row[8]</div>";
 
         if ($_SESSION['qn'] < mysql_num_rows($rs) - 1) {
             echo "<center><input type='submit' name='submit' value='Next Question'></center>";
@@ -111,7 +115,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
             echo "<center><input type='submit' name='submit' value='Get Result'></center>";
         }
         echo "</form>";
-        ?>                  
-         <div id="time"></div>
+        ?>
+        <span id="time"></span>
     </body>
 </html>

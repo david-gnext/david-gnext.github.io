@@ -137,7 +137,7 @@ a{
     margin-left : 25%;
 }
 #content div {
-    color : #1d1905;
+    color : #aaa;
     border : 2px solid #fff;
     padding :10px;
     border:1px solid #aaa;    
@@ -187,10 +187,9 @@ body {
     margin: 10px 200px !important;
 }
 /*use in log in design*/
-.style2{
-    color: #ffffff;
+.style2{    
     font-weight: bold;
-    background: #aaaec0;
+    float: right;
 }
 .navl{
     width: 180px;
@@ -263,8 +262,7 @@ body {
 }
 /*--------------*****--------------------*/
 a {
-
-    color: #330066;
+    color: #111828;
     text-decoration: none;
 }
 a:hover {
@@ -313,8 +311,6 @@ table#col{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: #000000;
-}
-.tot {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: bold;    
@@ -382,4 +378,11 @@ table#col{
    -webkit-background-clip: padding-box; 
   -moz-background-clip:    padding; 
   background-clip:         padding-box;
+}
+.left {
+    float :left;    
+}
+.col {
+    width : 100%;    
+    margin-top : 10%;
 }

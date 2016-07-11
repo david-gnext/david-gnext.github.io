@@ -17,35 +17,21 @@ if(isset($_SESSION['alogin'])){
 }
 include("header.php");
 ?>
-
-<p class="head1">Adminstrative Login </p>
-<form name="form1" method="post" action="login.php">
-    <table width="490" border="0" align="center">
-        <tr class="style8">
-    <td width="106"><span class="style2"></span></td>
-    <td width="132"><span class="style2"><span class="head1"><img src="login.jpg" width="131" height="155"></span></span></td>
-    <td width="238"><table width="219" border="0" align="center">
-  <tr class="style8">
-    <td width="163" class="style2">Login ID </td>
-    <td width="149"><input name="loginid" type="text" id="loginid" placeholder="Type ID here"></td>
-  </tr>
-  <tr class="style8">
-    <td class="style2">Password</td>
-    <td><input name="pass" type="password" id="pass" placeholder="Type Password here"></td>
-  </tr>
-  <tr class="style8">
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr class="style8">
-    <td>&nbsp;</td>
-    <td><input name="submit" type="submit" id="submit" value="Login"></td>
-  </tr>
-</table></td>
-  </tr>
-</table>
-
+<div class="login-box">
+<h2>Adminstrative Login </h2>
+<form name="form1" method="post" action="login.php">       
+    <div class="col">
+     Login ID
+    <input name="loginid" type="text" class="style2" id="loginid" placeholder="Type ID here">
+    </div>
+    <div class="col">
+    Password
+    <input name="pass" type="password" class="style2" id="pass" placeholder="Type Password here">    
+    </div>
+    <div class="col">
+        <input name="submit" type="submit" id="submit" value="Login" class="button">
+    </div>
 </form>
-
+</div>
 </body>
 </html>

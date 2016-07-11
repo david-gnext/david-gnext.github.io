@@ -16,6 +16,30 @@ and open the template in the editor.
     font-size: 10px;
     color : #252a2a;
 }
+#featured_wrapper img {
+    width : 50%;    
+}
 input {    
     margin: 20px;
+}
+
+#time {
+    font: normal 3.94em/37px "Lato";
+    transform-origin: 50% 100%;
+    background: #f7f7f7;
+    width: 35%;
+    display: inline-block;
+     -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+  -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+    font-style: italic;
+}
+#pop_image {
+    position: absolute;
+    top : 20%;
+    left : 25%;
+    width: 50%;
+    height: 50%;
+    box-shadow: 20px;
+    background: #aff;
 }

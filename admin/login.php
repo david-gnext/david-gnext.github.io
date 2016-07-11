@@ -10,7 +10,6 @@ session_start();
 </head>
 <body>
 <?php
-
 extract($_POST);
 if(isset($submit))
 {
@@ -35,11 +34,11 @@ include("header.php");
     <div id="featured-wrapper">
         <div id="featured" id="container"><header>Welcome to Admistrative Area </header></div></div>
     <div id="content">
-        <div id="button"><a href="subadd.php">Add Subject</a></div>
-        <div id="button"><a href="testadd.php">Add Test</a></div>
-        <div id="button"><a href="questionadd.php">Add Question </a></div>
-        <div id="button"><a href="memberresult.php">See Member</a></div>
-        <div id="button"><a href="subjectscore.php">Tasks Result</a></div>
+        <div><a href="subadd.php">Add Subject</a></div>
+        <div><a href="testadd.php">Add Test</a></div>
+        <div><a href="questionadd.php">Add Question </a></div>
+        <div><a href="memberresult.php">See Member</a></div>
+        <div><a href="subjectscore.php">Tasks Result</a></div>
     </div>
 </body>
 </html>

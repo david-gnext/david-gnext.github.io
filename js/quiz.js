@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 function preventBack() {
     window.history.forward();
 }
@@ -11,25 +12,36 @@ $(window).on('beforeunload', function (e) {
     return 'Are you sure you want to leave?';
 });
 
-$(document).ready(function () {
+$(document).ready(function () {         
+                  
+    $(document).on("click", "#featured_wrapper img", function (e) {
+        e.preventDefault();
+        var pop_image = "<div id='pop_image'><img src='" + $(this).attr("src") + "' width='100%' hieght='100%' id='pop_image_t' ></div>";
+        $('body').append(pop_image);
+        $("body").on("click","#pop_image_t",function (e) {
+                $('#pop_image').remove();
+        });
+    });
     //next click 
-    $(':submit').click(function (e) {
+    $(document).on("click", ':submit', function (e) {
         e.preventDefault();
         if ($('input[type=radio]:checked').length == 0) {
             Common.error("You must click one answer for that question");
         }
         else {
-            data = $('form').serialize() + "&submit=" + $(this).val();
+            data = $('form').serialize() + "&submit=" + $(this).val() + "&js=0";
+            if ($(this).val() == "Get Result") {
+                clearInterval(timeload);
+            }
             $.ajax({
-                url :"quiz.php",
-                data : data,
-                dataType : "json",
-                type : "POST",
-                success : function (d) {                 
-                $('body').html(d);
-               }
-            });    
-        }    
+                url: "quiz.php",
+                data: data,
+                type: "POST",
+                success: function (d) {
+                    $('body').html(d);
+                }
+            });
+        }
     });
     var countdown = 1 * 60 * 1000;
     var timeload = setInterval(function () {
@@ -41,11 +53,12 @@ $(document).ready(function () {
         if (countdown <= 0) {
             alert("5 min!");
             clearInterval(timeload);
-             $.post("quiz.php", $('form').serialize(), function (d) {
-                $('form').html(d);
+            data = "ans=0&submit=Get Result" + "&js=0";
+            $.post("quiz.php", data, function (d) {
+                $('body').html(d);
             });
         } else {
-            $("#time").html(min + " : " + sec);
+            $("#time").html("<font color='red'>Allowed Time </font>" + min + " : " + sec);
         }
     }, 1000);
 });

@@ -7,17 +7,29 @@ include("header.php");
 <?php
 extract($_POST);
 
-echo "<BR>";
-if (!isset($_SESSION['alogin'])) {
-    echo "<br><h2><div  class=head1>You are not Logged On Please Login to Access this Page</div></h2>";
-    echo "<a href=index.php><h3 align=center>Click Here for Login</h3></a>";
-    exit();
-}
 echo "<BR><h3 class=head1>Add Question </h3>";
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {    
     if ($_POST['submit'] == 'Save' || strlen($_POST['testid']) > 0) {
         extract($_POST);
-        mysql_query("insert into mst_question(test_id,que_desc,ans1,ans2,ans3,ans4,true_ans) values ('$testid','$addque','$ans1','$ans2','$ans3','$ans4','$anstrue')", $cn) or die(mysql_error());
+    $file   =$_FILES['image']['tmp_name'];
+    if(!isset($file))
+    {
+      echo 'Please select an Image';
+    }
+    else 
+    {
+       $image_check = getimagesize($_FILES['image']['tmp_name']);
+       if($image_check==false)
+       {
+        echo 'Not a Valid Image';
+       }
+       else
+       {
+        $image = addslashes(file_get_contents ($_FILES['image']['tmp_name']));
+        $image_name = addslashes($_FILES['image']['name']);
+        mysql_query("insert into mst_question(test_id,que_desc,image_name,image,ans1,ans2,ans3,ans4,true_ans) values ('$testid','$addque','{$image_name}','{$image}','$ans1','$ans2','$ans3','$ans4','$anstrue')", $cn) or die(mysql_error());
+       }
+   }        
 //        echo "<p align=center>Question Added Successfully.</p>";
    ?>
 <script> alert("Question Added Successfully");</script>
@@ -26,13 +38,8 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <SCRIPT LANGUAGE="JavaScript">
-    function check() {
-        mt = document.form1.addque.value;
-        if (mt.length < 1) {
-            alert("Please Enter Question");
-            document.form1.addque.focus();
-            return false;
-        }
+    function check() {       
+       
         a1 = document.form1.ans1.value;
         if (a1.length < 1) {
             alert("Please Enter Answer1");
@@ -66,7 +73,7 @@ if (isset($_POST['submit'])) {
         return true;
     }
 </script>
-<form name="form1" method="post" onSubmit="return check();">
+<form name="form1" method="post" onSubmit="return check();"  enctype='multipart/form-data'>
     <table width="80%"  border="0" align="center">
         <tr>
             <td width="24%" height="32"><div align="left"><strong>Select Test Name </strong></div></td>
@@ -77,12 +84,6 @@ if (isset($_POST['submit'])) {
                     while ($row = mysql_fetch_array($rs)) {
                          echo "<option value='".$row['test_id']."' selected>".$row['test_name']."</option>";
                     }
-//                        if ($row[0] == $testid) {
-//                            echo "<option value='$row[0]' selected>$row[2]</option>";
-//                        } else {
-//                            echo "<option value='$row[0]'>$row[2]</option>";
-//                        }
-//                    }
                     ?>
                 </select>
             </td>
@@ -90,7 +91,9 @@ if (isset($_POST['submit'])) {
         <tr>
             <td height="26"><div align="left"><strong> Enter Question </strong></div></td>
             <td>&nbsp;</td>
-            <td><textarea name="addque" cols="60" rows="2" id="addque" class="style1"></textarea></td>
+            <td><textarea name="addque" cols="60" rows="2" id="addque" class="style1"></textarea>
+            OR Enter Image :  <input type='file' name= 'image' >
+            </td>
         </tr>
         <tr>
             <td height="26"><div align="left"><strong>Enter Answer1 </strong></div></td>
