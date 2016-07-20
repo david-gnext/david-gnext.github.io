@@ -1,0 +1,27 @@
+.spLeft {    
+    width: 50%;
+    float: left;
+}
+.spRight {            
+    width: 50%;
+    float: left;        
+}
+.spRight input,select,textarea {
+    width: 90%;                
+    padding : 5px;
+}
+.input{                
+    text-align: left;
+    width: 100%;
+    padding-top:  8%;    
+}            
+input[type=file]{
+    margin-top: 5px;
+}
+input[type=submit]{
+    margin-top: 9px;
+    padding : 5px 20px;
+    font-style: bold;
+    background: #fff;
+    color : black;
+}

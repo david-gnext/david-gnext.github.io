@@ -16,7 +16,7 @@ include("database.php");
         <?php
         include("header.php");
         echo "<h1 class=head1> Review Test Question</h1>";
-        $rs = mysql_query("select * from mst_useranswer where sess_id='" . session_id() . "'", $cn) or die(mysql_error());
+        $rs = mysqli_query($cn,"select * from mst_useranswer where sess_id='" . session_id() . "'");
         if (!isset($_SESSION['qn'])) {
             $_SESSION['qn'] = 0;
         } else {
@@ -25,7 +25,7 @@ include("database.php");
 
                     $_SESSION['qn'] = $_SESSION['qn'] + 1;
                 } else if ($_POST['submit'] == 'Finish') {
-                    mysql_query("delete from mst_useranswer where sess_id='" . session_id() . "'") or die(mysql_error());
+                    mysqli_query($cn,"delete from mst_useranswer where sess_id='" . session_id() . "'");
                     unset($_SESSION['qn']);?>
 <!--                    //header("location:index.php");-->
                     <script>location.replace("index.php");</script><!--header function is not working here ,so i put js location code-->
@@ -34,8 +34,8 @@ include("database.php");
                 }
             }
         }
-        mysql_data_seek($rs, $_SESSION['qn']);
-        $row = mysql_fetch_row($rs);
+        mysqli_data_seek($rs, $_SESSION['qn']);
+        $row = mysqli_fetch_row($rs);
         echo "<form name=myfm method=post action=review.php>";
         echo "<table width=100% style='margin-left:310px'> <tr> <td width=30>&nbsp;</td><td> <table border=0>";
         //give margin-left 310px for table put center****modified date 21/5/15
@@ -45,7 +45,7 @@ include("database.php");
         echo "<tr><td class=" . ($row[7] == 2 ? 'style5' : 'style16') . ">$row[4]</td></tr>";
         echo "<tr><td class=" . ($row[7] == 3 ? 'style5' : 'style16') . ">$row[5]</td></tr>";
         echo "<tr><td class=" . ($row[7] == 4 ? 'style5' : 'style16') . ">$row[6]</td></tr>";
-        if ($_SESSION['qn'] < mysql_num_rows($rs) - 1) {
+        if ($_SESSION['qn'] < mysqli_num_rows($rs) - 1) {
             echo "<tr><td><input type=submit name=submit value='Next Question'></tr></td>";
         } else {
             echo "<tr><td><input type=submit name=submit value='Finish'></tr></td>";

@@ -4,12 +4,7 @@ include("database.php");
 extract($_POST);
 extract($_GET);
 extract($_SESSION);
-/* $rs=mysql_query("select * from mst_question where test_id=$tid",$cn) or die(mysql_error());
-  if($_SESSION[qn]>mysql_num_rows($rs))
-  {
-  unset($_SESSION[qn]);
-  exit;
-  } */
+
 if (isset($subid) && isset($testid)) {
     $_SESSION['sid'] = $subid;
     $_SESSION['tid'] = $testid;
@@ -42,26 +37,26 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
 
         $query = "select * from mst_question";
 
-        $rs = mysql_query("select * from mst_question where test_id=$tid", $cn) or die(mysql_error());
+        $rs = mysqli_query($cn,"select * from mst_question where test_id=$tid");
         if (!isset($_SESSION['qn'])) {
             $_SESSION['qn'] = 0;
-            mysql_query("delete from mst_useranswer where sess_id='" . session_id() . "'") or die(mysql_error());
+            mysqli_query($cn,"delete from mst_useranswer where sess_id='" . session_id() . "'");
             $_SESSION['trueans'] = 0;
         } else {
             if (isset($_POST['submit'])) {
                 extract($_POST);
                 if ($_POST['submit'] == 'Next Question' && isset($ans)) {
-                    mysql_data_seek($rs, $_SESSION['qn']);
-                    $row = mysql_fetch_row($rs);
-                    mysql_query("insert into mst_useranswer(sess_id,test_id,que_des,ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')") or die(mysql_error());
-                    if ($ans == $row[7]) {
+                    mysqli_data_seek($rs, $_SESSION['qn']);
+                    $row = mysqli_fetch_row($rs);
+                    mysqli_query($cn,"insert into mst_useranswer(sess_id,test_id,que_des,ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')");
+                    if ($ans == $row[9]) {
                         $_SESSION['trueans'] = $_SESSION['trueans'] + 1;
                     }
                     $_SESSION['qn'] = $_SESSION['qn'] + 1;
                 } else if ($_POST['submit'] == 'Get Result' && isset($ans)) {
-                    mysql_data_seek($rs, $_SESSION['qn']);
-                    $row = mysql_fetch_row($rs);
-                    mysql_query("insert into mst_useranswer(sess_id, test_id, que_des, ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')") or die(mysql_error());
+                    mysqli_data_seek($rs, $_SESSION['qn']);
+                    $row = mysqli_fetch_row($rs);
+                    mysqli_query($cn,"insert into mst_useranswer(sess_id, test_id, que_des, ans1,ans2,ans3,ans4,true_ans,your_ans) values ('" . session_id() . "', $tid,'$row[2]','$row[5]','$row[6]','$row[7]', '$row[8]','$row[9]','$ans')");
                     if ($ans == $row[9]) {
                         $_SESSION['trueans'] = $_SESSION['trueans'] + 1;
                     }
@@ -80,7 +75,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                         <script>alert('You are Fail,Try more your lesson!!!');</script>
                         <?php
                     }                    
-                    mysql_query("insert into mst_result(login,test_id,test_date,score) values('".$_SESSION['user']."','$tid','" . date("d/m/Y") . "','" . $_SESSION['trueans'] . "')") or die(mysql_error());
+                    mysqli_query($cn,"insert into mst_result(login,test_id,test_date,score) values('".$_SESSION['user']."','$tid','" . date("d/m/Y") . "','" . $_SESSION['trueans'] . "')");
 //                    echo "<h1 align=center><a href=review.php> Review Question</a> </h1></div>";
                     unset($_SESSION['qn']);
                     unset($_SESSION['sid']);
@@ -91,7 +86,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
             }
         }        
         //$rs = mysql_query("select * from mst_question where test_id=" . $tid, $cn) or die(mysql_error());
-        if ($_SESSION['qn'] > mysql_num_rows($rs) - 1) {
+        if ($_SESSION['qn'] > mysqli_num_rows($rs) - 1) {
             unset($_SESSION['qn']);
             echo "<h1 class=head1>Some Error  Occured</h1>";
             //session_destroy();
@@ -99,8 +94,8 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
 
             exit;
         }
-        mysql_data_seek($rs, $_SESSION['qn']);
-        $row = mysql_fetch_row($rs);        
+        mysqli_data_seek($rs, $_SESSION['qn']);
+        $row = mysqli_fetch_row($rs);        
         echo "<form name='myfm' method='POST' action='quiz.php' class='login-box'>";
                 $n = $_SESSION['qn'] + 1;
         echo "<div id=featured_wrapper><center><h3>Que " . $n . ":".(($row[2] == "") ? "<img src='data:image/jpeg;base64,".base64_encode($row[4])."' >" : $row[2]) ."</h3></center></div>";
@@ -109,7 +104,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
         echo "<div><input type='radio' name='ans' value='3' id='a3'>$row[7]</div>";
         echo "<div><input type='radio' name='ans' value='4' id='a4'>$row[8]</div>";
 
-        if ($_SESSION['qn'] < mysql_num_rows($rs) - 1) {
+        if ($_SESSION['qn'] < mysqli_num_rows($rs) - 1) {
             echo "<center><input type='submit' name='submit' value='Next Question'></center>";
         } else {
             echo "<center><input type='submit' name='submit' value='Get Result'></center>";

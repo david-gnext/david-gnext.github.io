@@ -19,16 +19,16 @@ session_start();
         if (isset($_GET['testid'])) {
             $mem_name = array();
             $score = array();
-            $result = mysql_query("select test_name,login,score,total_que from mst_subject s JOIN mst_test t ON (t.sub_id=s.sub_id) JOIN mst_result r ON(r.test_id=t.test_id) where s.sub_id='" . $_GET['testid'] . "'order by score DESC");
+            $result = mysqli_query($cn,"select test_name,login,score,total_que from mst_subject s JOIN mst_test t ON (t.sub_id=s.sub_id) JOIN mst_result r ON(r.test_id=t.test_id) where s.sub_id='" . $_GET['testid'] . "'order by score DESC");
             echo "<h2 class=head1>" . $_GET['testname'] . " Test Result Score</h2>";
-            echo "<table align=center class=coll ><tr><th class=style2>Name</th><th class=style2>Subject</th><th class=style2>Give Mark</th><th class=style2>Score</th><th class=style2>Status</th></tr>";
-            while ($row = mysql_fetch_row($result)) {
-                echo "<tr><td align=center class=style2>$row[1]</td><td aling=center class=style2>$row[0]</td><td align=center class=style2>$row[3]</td><td align=center class=style2>$row[2]</td>";
+            echo "<table class=coll align=center><thead><th class=style3>Name</th><th class=style3>Subject</th><th class=style3>Give Mark</th><th class=style3>Score</th><th class=style3>Status</th></thead>";
+            while ($row = mysqli_fetch_row($result)) {
+                echo "<tr><td align=center class=style3>$row[1]</td><td aling=center class=style3>$row[0]</td><td align=center class=style3>$row[3]</td><td align=center class=style3>$row[2]</td>";
                 $status = $row[3] / 2;
                 if ($row[2] > $status) {
-                    echo "<td align=center class='style2 pass'>Pass</td></tr>";
+                    echo "<td align=center class='style3 pass'>Pass</td></tr>";
                 } else {
-                    echo "<td align=center class='style2 fail'>Fail</td></tr>";
+                    echo "<td align=center class='style3 fail'>Fail</td></tr>";
                 }
                 array_push($mem_name, $row[1]); //get member name array
                 array_push($score, $row[2]);  //get score array
@@ -94,13 +94,13 @@ session_start();
 #member result table list
 #@david.jp
 ##                     
-        $rs1 = mysql_query("select * from mst_subject ");
+        $rs1 = mysqli_query($cn,"select * from mst_subject ");
 
         echo "<h2 class=head1> Select Subject Name to See Score </h2>";
         echo "<table align=center class=coll>";
 
-        while ($row = mysql_fetch_row($rs1)) {
-            echo "<tr><td align=center class=style2><a href=subjectscore.php?testid=$row[0]&testname=$row[1]><div >$row[1]</div></a>";
+        while ($row = mysqli_fetch_row($rs1)) {
+            echo "<tr><td align=center class=style3><a href=subjectscore.php?testid=$row[0]&testname=$row[1]><div >$row[1]</div></a>";
         }
         echo "</table>";
         ?>

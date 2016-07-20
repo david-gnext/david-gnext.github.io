@@ -18,9 +18,9 @@ session_start();
         include("header.php");
         include("database.php");
         echo "<div id=featured-wrapper><div id='featured' class=container> Select Subject to Give Quiz</div> </div>";
-        $rs = mysql_query("select * from mst_subject");
+        $rs = mysqli_query($cn,"select * from mst_subject");
         echo "<div id=content>";
-        while ($row = mysql_fetch_row($rs)) {
+        while ($row = mysqli_fetch_row($rs)) {
             echo "<div class='link-li'><a href=showtest.php?subid=$row[0]><div>$row[1]</div></a></div>";
         }
         echo "</div>";

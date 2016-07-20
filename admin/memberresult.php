@@ -18,11 +18,11 @@ session_start();
         
         
         <?php
-        $rs = mysql_query("select * from mst_user", $cn) or die(mysql_error());
+        $rs = mysqli_query($cn,"select * from mst_user");
         echo "<table border=0 align=center class='result_tb'><thead class=style6><th width=300>Member Name </th><th width=300>City</th><th width=200>Email</th></thead>";
         //check for member exist
-        if (mysql_num_rows($rs) > 0) {
-            while ($row = mysql_fetch_row($rs)) {
+        if (mysqli_num_rows($rs) > 0) {
+            while ($row = mysqli_fetch_row($rs)) {
                 echo "<tr class=style5>
                           <td><abbr title='See my result'>" . $row[3] . "</abbr>
                                <a href='result.php?name=$row[1]&mem=$row[3]'><input type='button' style='float:right' value='Result'></a>
@@ -43,9 +43,9 @@ session_start();
         
         if (isset($_POST['submit'])) {
             extract($_SESSION);
-            mysql_query('delete from mst_user where login="'.$_POST["del"].'"', $cn) or die(mysql_error());
-            mysql_query('delete from mst_result where login="'.$_POST["del"].'"', $cn) or die(mysql_error());
-            mysql_query('delete from mst_useranswer where sess_id="'.session_id().'"', $cn) or die(mysql_error());
+            mysqli_query($cn,'delete from mst_user where login="'.$_POST["del"].'"');
+            mysqli_query($cn,'delete from mst_result where login="'.$_POST["del"].'"');
+            mysqli_query($cn,'delete from mst_useranswer where sess_id="'.session_id().'"');
             
             echo '<meta http-equiv="refresh" content="0">';
         }

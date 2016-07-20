@@ -14,12 +14,12 @@ extract($_POST);
 if(isset($submit))
 {
 	include("../database.php");
-	$rs=mysql_query("select * from mst_admin where loginid='$loginid' and pass='$pass'",$cn) or die(mysql_error());
-	if(mysql_num_rows($rs)<1)
+	$rs= mysqli_query($cn,"select * from mst_admin where loginid = '".$loginid."' and pass = '".$pass."'");
+	if($rs->num_rows < 1 )
 	{
 		echo "<BR><BR><BR><BR><div class=head1> Invalid User Name or Password<div>";
 		exit;
-		
+		               
 	}
 	$_SESSION['alogin']="true";
 	

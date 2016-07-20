@@ -200,6 +200,10 @@ body {
     color:white;   
     border-right: 3px dashed #fff;
 }
+.style3 {    
+    font-weight: bold;
+    background: #ffffe5;
+}
 .style4 {
     color: #ffffff;
     font-weight: bold;
@@ -258,7 +262,7 @@ body {
 }
 .coll th{
     height: 40px;
-    background: brown;
+    background: #ffefdf;
 }
 /*--------------*****--------------------*/
 a {
@@ -287,7 +291,7 @@ a:visited {
     font-size: 18px;
     color: #aaa;
     text-align: center;
-    margin-top : 15%;
+    margin-top : 5%;
     font-weight: bold;
 }
 /*for table color cell*/
@@ -322,9 +326,7 @@ table#col{
 .tans {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
-    font-weight: bold;    
-    background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);
-    box-shadow: 0px 0px 0px 9px rgba(0,0,0,0.15);
+    font-weight: bold;           
     color:#00CC66 ;
 }
 .fans {
@@ -347,6 +349,18 @@ table#col{
     // background:linear-gradient(180deg,red 0%,#bbbbbb 100%);
 
 }
+.box {
+    background: #09aac4 !important;
+    box-shadow: 0px 0px 0px 5px rgba(255,255,255, 1);
+    left : 25%;
+    margin-top : 5%;
+    position: absolute;
+    width : 50%;
+    text-align: center;
+    font-size:  19px;
+    margin-bottom: 5%;
+}
+
 .login-box{
     margin: 5% auto;
     padding: 10px 30px;

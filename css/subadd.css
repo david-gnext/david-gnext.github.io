@@ -1,0 +1,21 @@
+
+.box h2 {
+     font-family: 'Archivo Narrow', sans-serif;     
+    font-weight: 900;
+}
+span {
+  font-style: bold;
+  font-size: 20px;  
+  color : #fff;
+}
+input {
+    padding : 5px;
+}
+input[type=submit] {
+    margin-top: 5%;
+    background: #09fca8;
+    color : #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    padding : 5px 20px;
+}

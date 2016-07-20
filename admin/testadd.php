@@ -17,7 +17,7 @@ echo "<br><h2><div  class=head1>Add Test</div></h2>";
 if (isset($_POST['submit'])) {
     if ($_POST['submit'] == 'Save' || strlen($_POST['subid']) > 0) {
         extract($_POST);
-        mysql_query("insert into mst_test(sub_id,test_name,total_que) values ('$subid','$testname','$totque')", $cn) or die(mysql_error());
+        mysqli_query($cn,"insert into mst_test(sub_id,test_name,total_que) values ('$subid','$testname','$totque')");
         echo "<p align=center>Test <b>\"$testname\"</b> Added Successfully.</p>";
         unset($_POST);
     }
@@ -48,9 +48,9 @@ if (isset($_POST['submit'])) {
             <td width="48%" height="32">
                 <select name="subid">                    
                     <?php
-                    $rs = mysql_query("select * from mst_subject order by sub_name", $cn);
+                    $rs = mysqli_query($cn,"select * from mst_subject order by sub_name");
                     
-                    while ($row = mysql_fetch_array($rs)) {                        
+                    while ($row = mysqli_fetch_array($rs)) {                        
                         echo "<option value='".$row['sub_id']."' selected>".$row['sub_name']."</option>";
 //                        if ($row[0] == $subid) {
 //                            echo "<option value='$row[0]' selected>$row[0]</option>";
