@@ -43,12 +43,14 @@ $(document).ready(function () {
             });
         }
     });
-    var countdown = 1 * 60 * 1000;
+    var totalTime = $("#allowTime").text().split(':');    
+    var countdown =(totalTime[0] * 60 * 60 * 1000) + (totalTime[1] * 60 * 1000);
     var timeload = setInterval(function () {
         countdown -= 1000;
-        var min = Math.floor(countdown / (60 * 1000));
+        var hr   = Math.floor((countdown / (60 * 60 * 1000)) % 24 );
+        var min = Math.floor((countdown / (60 * 1000)) % 60 );
         //var sec = Math.floor(countdown - (min * 60 * 1000));  // wrong
-        var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
+        var sec = Math.floor((countdown / 1000) % 60);  //correct
 
         if (countdown <= 0) {
             alert("5 min!");
@@ -57,8 +59,8 @@ $(document).ready(function () {
             $.post("quiz.php", data, function (d) {
                 $('body').html(d);
             });
-        } else {
-            $("#time").html("<font color='red'>Allowed Time </font>" + min + " : " + sec);
+        } else {            
+            $("#time").html("<font color='red'>Allowed Time </font>" + hr + " : " + min + " : " + sec);
         }
     }, 1000);
 });

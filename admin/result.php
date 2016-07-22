@@ -17,17 +17,17 @@ session_start();
         include("../database.php");
         extract($_SESSION);
         $member = $_GET['name'];
-        $rs = mysql_query("select t.test_name,t.total_que,r.test_date,r.score from mst_test t, mst_result r where
-t.test_id=r.test_id and r.login='$member'", $cn) or die(mysql_error());
+        $rs = mysqli_query($cn,"select t.test_name,t.total_que,r.test_date,r.score from mst_test t, mst_result r where
+t.test_id=r.test_id and r.login='$member'");
         echo "<h1 class=head1><u><span style='background:#abdd99'>" . $_GET["mem"] . "</span></u> Result </h1>";
-        if (mysql_num_rows($rs) < 1) {
+        if (mysqli_num_rows($rs) < 1) {
             echo "<br><br><h1 class=head1> You have not take answer any quiz</h1>";
             exit;
         }
         echo "<table align=center class='result_tb'><thead class='style6'><th width=300 >Test Name</th> <th width=200> Total<br> Question</th> <th width=100 > Score</th><th width=200 >Qualification</th></thead>";
         $na = array();
         $sub = array();
-        while ($row = mysql_fetch_row($rs)) {
+        while ($row = mysqli_fetch_row($rs)) {            
             echo "<tr class=style5><td>$row[0]</td> <td align=center> $row[1]</td> <td align=center> $row[3]</td>";
             if ($row[3] > ($row[1] / 2)) {
                 echo "<td align=center class=pass>Pass</td></tr>";

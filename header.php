@@ -17,7 +17,7 @@
         </div>
     </div>                  
     <?php
-} else if ($index != "index.php" && $index != "signup.php") {
+} else if ($index != "index.php" && $index != "signup.php" && $index != "signupuser.php") {
     echo "</div></div>";
     echo "<BR><BR><BR><BR><div class=head1> Your are not logged in<br> Please <a href=index.php>Login</a><div>";
     exit;

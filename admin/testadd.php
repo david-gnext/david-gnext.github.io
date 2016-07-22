@@ -1,23 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['alogin'])) {
-    echo "<br><h2>You are not Logged On Please Login to Access this Page</h2>";
-    echo "<a href=index.php><h3 align=center>Click Here for Login</h3></a>";
-    exit();
-}
 ?>
 <link href="../quiz.css" rel="stylesheet" type="text/css">
+<link href="../css/questionadd.css" rel="stylesheet" type="text/css">
 <?php
 require("../database.php");
 
 include("header.php");
 
 
-echo "<br><h2><div  class=head1>Add Test</div></h2>";
+echo "<div class='box'><h2><div  class=head1>Add Test</div></h2>";
 if (isset($_POST['submit'])) {
     if ($_POST['submit'] == 'Save' || strlen($_POST['subid']) > 0) {
         extract($_POST);
-        mysqli_query($cn,"insert into mst_test(sub_id,test_name,total_que) values ('$subid','$testname','$totque')");
+        mysqli_query($cn,"insert into mst_test(sub_id,test_name,total_que,time) values ('$subid','$testname','$totque','$hour:$min')");
         echo "<p align=center>Test <b>\"$testname\"</b> Added Successfully.</p>";
         unset($_POST);
     }
@@ -41,42 +37,62 @@ if (isset($_POST['submit'])) {
     }
 </script>
 <form name="form1" method="post" onSubmit="return check();">
-    <table width="58%"  border="0" align="center">
-        <tr>
-            <td width="49%" height="32"><div align="left"><strong>Enter Subject ID </strong></div></td>
-            <td width="3%" height="32"> </td> 
-            <td width="48%" height="32">
+    <div class="input">
+        <div class="spLeft">
+    Enter Subject ID           
+        </div>
+        <div class="spRight">
                 <select name="subid">                    
                     <?php
                     $rs = mysqli_query($cn,"select * from mst_subject order by sub_name");
                     
                     while ($row = mysqli_fetch_array($rs)) {                        
                         echo "<option value='".$row['sub_id']."' selected>".$row['sub_name']."</option>";
-//                        if ($row[0] == $subid) {
-//                            echo "<option value='$row[0]' selected>$row[0]</option>";
-//                        } else {
-//                            echo "<option value='$row[1]'>$row[1]</option>";
-//                        }
                     }
                     ?>
                 </select>
-            </td>
-        </tr>    
-        <tr>
-            <td height="26"><div align="left"><strong> Enter Test Name </strong></div></td>
-            <td>&nbsp;</td>
-            <td><input name="testname" type="text" id="testname"></td>
-        </tr>
-        <tr>
-            <td height="26"><div align="left"><strong>Enter Total Question </strong></div></td>
-            <td>&nbsp;</td>
-            <td><input name="totque" type="text" id="totque"></td>
-        </tr>
-        <tr>
-            <td height="26"></td>
-            <td>&nbsp;</td>
-            <td><input type="submit" name="submit" value="Add" ></td>
-        </tr>
-    </table>
+        </div>
+    </div>
+    <div class="input">
+        <div class="spLeft">
+         Enter Test Name
+        </div>
+        <div class="spRight">
+           <input name="testname" type="text" id="testname">
+        </div>
+    </div>
+    <div class="input">
+        <div class="spLeft">
+        Enter Total Question
+        </div>
+        <div class="spRight">
+           <input name="totque" type="text" id="totque">           
+        </div>
+    </div>
+    <div class="input small-select">
+        <div class="spLeft">
+        Enter Total Allow Time
+        </div>
+        <div class="spRight">
+            Hour :
+            <select name="hour">
+                <?php
+                for($h = 0; $h < 25;$h++){
+                    echo "<option>$h</option>";
+                }
+                ?>
+            </select>
+            Minutes :
+            <select name="min">
+                  <?php
+                for($m = 0; $m < 60;$m++){
+                    echo "<option>$m</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <input type="submit" name="submit" value="Add">        
 </form>
-<p>&nbsp; </p>
+</div>
+

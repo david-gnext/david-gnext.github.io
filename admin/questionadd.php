@@ -90,28 +90,28 @@ if (isset($_POST['submit'])) {
     </div>
     <div  class="input">
         <div class="spLeft">
-            Enter Answer1 
+            Enter Option1 
         </div>
         <div class="spRight">
             <input name="ans1" type="text" id="ans1" >
         </div>
     </div>
     <div class="input" style="margin-top: 25px;">
-        <div class="spLeft"> Enter Answer2 </div>
+        <div class="spLeft"> Enter Option2 </div>
         <div class="spRight">
             <input name="ans2" type="text" id="ans2" >
         </div>
     </div>
     <div  class="input">
         <div class="spLeft">
-            Enter Answer3 </div>
+            Enter Option3 </div>
         <div class="spRight">
             <input name="ans3" type="text" id="ans3" >
         </div>
     </div>
     <div  class="input">
         <div class="spLeft">
-            Enter Answer4
+            Enter Option4
         </div>
         <div class="spRight">
             <input name="ans4" type="text" id="ans4" >

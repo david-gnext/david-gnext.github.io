@@ -30,14 +30,18 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
         <link href="css/quiz.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body> 
+    <body>         
         <?php
         include("header.php");
 
 
-        $query = "select * from mst_question";
-
+        $query = "select time from mst_test where test_id=$tid";
+        $allowTime = mysqli_query($cn,$query);   
+        echo '<span id="time"></span>';
+        echo "<span id='allowTime' hidden>".$allowTime->fetch_row()[0]."</span>";
         $rs = mysqli_query($cn,"select * from mst_question where test_id=$tid");
+        $t_q = mysqli_query($cn,"SELECT COUNT(*) FROM mst_question where test_id=$tid");
+        $t_q = $t_q->fetch_row();        
         if (!isset($_SESSION['qn'])) {
             $_SESSION['qn'] = 0;
             mysqli_query($cn,"delete from mst_useranswer where sess_id='" . session_id() . "'");
@@ -61,7 +65,7 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
                         $_SESSION['trueans'] = $_SESSION['trueans'] + 1;
                     }
                     echo "<div id=featured-wrapper> Result</div>";
-                    $_SESSION['qn'] = $_SESSION['qn'] + 1;
+                    $_SESSION['qn'] = $t_q[0];
                     echo "<div id=content><div class=style1>Total Question<span style='float:right;'>" . $_SESSION['qn']."</span></div>";
                     echo "<div class=style1>True Answer<span style='float:right;'>" . $_SESSION['trueans']."</span></div>";
                     $w = $_SESSION['qn'] - $_SESSION['trueans'];
@@ -110,7 +114,6 @@ if (!isset($_SESSION['sid']) || !isset($_SESSION['tid'])) {
             echo "<center><input type='submit' name='submit' value='Get Result'></center>";
         }
         echo "</form>";
-        ?>
-        <span id="time"></span>
+        ?>        
     </body>
 </html>
