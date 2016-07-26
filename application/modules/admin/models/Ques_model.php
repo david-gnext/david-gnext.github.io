@@ -30,6 +30,7 @@ class Ques_model extends CI_Model {
         $this->true_ans = $post["anstrue"];
         $this->db->insert("mst_question",$this);
     }
+    
     public function get_allTest() {
         $this->db->order_by("test_name");
         $query = $this->db->get("mst_test");

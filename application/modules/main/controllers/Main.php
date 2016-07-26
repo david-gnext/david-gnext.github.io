@@ -43,8 +43,8 @@ class Main extends CI_Controller {
             $this->session->set_userdata(array('qn' => 0));
             $this->main_model->delete_ans(session_id());
             $this->session->set_userdata(array('trueans' => 0));
-        } 
-        else {            
+        }
+        else {
             $this->load->model("ans_model");
             $data["ques"]->data_seek($this->session->userdata("qn"));
             $insert = $data["ques"]->unbuffered_row();
