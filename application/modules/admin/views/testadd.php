@@ -1,23 +1,9 @@
+<link href="<?php echo base_url();?>common/css/questionadd.css" rel="stylesheet" type="text/css">
 <?php
-session_start();
-?>
-<link href="../quiz.css" rel="stylesheet" type="text/css">
-<link href="../css/questionadd.css" rel="stylesheet" type="text/css">
-<?php
-require("../database.php");
-
-include("header.php");
-
-
 echo "<div class='box'><h2><div  class=head1>Add Test</div></h2>";
-if (isset($_POST['submit'])) {
-    if ($_POST['submit'] == 'Save' || strlen($_POST['subid']) > 0) {
-        extract($_POST);
-        mysqli_query($cn,"insert into mst_test(sub_id,test_name,total_que,time) values ('$subid','$testname','$totque','$hour:$min')");
-        echo "<p align=center>Test <b>\"$testname\"</b> Added Successfully.</p>";
-        unset($_POST);
+if (isset($success)) {
+        echo "<p align=center>Test ".$testname." Added Successfully.</p>";        
     }
-}
 ?>
 <SCRIPT LANGUAGE="JavaScript">
     function check() {
@@ -44,10 +30,8 @@ if (isset($_POST['submit'])) {
         <div class="spRight">
                 <select name="subid">                    
                     <?php
-                    $rs = mysqli_query($cn,"select * from mst_subject order by sub_name");
-                    
-                    while ($row = mysqli_fetch_array($rs)) {                        
-                        echo "<option value='".$row['sub_id']."' selected>".$row['sub_name']."</option>";
+                    foreach($Allsubject as $all){                                     
+                        echo "<option value='".$all->sub_id."' selected>".$all->sub_name."</option>";
                     }
                     ?>
                 </select>

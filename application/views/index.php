@@ -1,31 +1,15 @@
-<?php
-session_start();
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-    <head>
-        <title>Gnext Online Quiz</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <link href="<?php echo base_url();?>common/css/quiz.css" rel="stylesheet" type="text/css">
-        <link href="<?php echo base_url();?>common/css/index.css" rel="stylesheet" type="text/css">        
     </head>
     <body>
-        <?php        
-        include("header.php");
-        extract($_POST);
-        if (isset($submit)) {
-            include("database.php");
-            $rs = mysqli_query($cn,"select * from mst_user where login ='$user' and pass ='$pass'");            
-            if (mysqli_num_rows($rs) < 1) {
+        <?php                                        
+            if (count($user) == 0) {
                 echo "<BR><BR><BR><BR><div class=head1> Invalid User Name or Password<div>";
-                $_SESSION['alogin'] = false;
-                exit;
+                $this->session->set_userdata(array('alogin'=> false));                
             }
-            $_SESSION['user'] = $user;
-            $_SESSION['alogin'] = true;
-        } 
-        if (isset($_SESSION['alogin'])) {
-            if($_SESSION['alogin']){
+            else{
+            $this->session->set_userdata(array('user'=> $user));
+            $this->session->set_userdata(array('alogin' => true));
+        
+            if($this->session->userdata('alogin')){
             ?>
             <script>window.location.href = 'main/sublist';</script>
             <?php
@@ -33,7 +17,7 @@ session_start();
             else{
             echo "<BR><BR><BR><BR><div class=head1> Your are not logged in<br> Please <a href=index.php>Login</a><div>";                
             }
-        }
+            }
         ?>    
         <div class="login-box ">
             <h3> Log In </h3>

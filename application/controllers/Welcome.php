@@ -1,25 +1,25 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('index');
-	}
+    public function __construct() {
+        // Call the CI_Model constructor
+        parent::__construct();
+        $this->db = $this->load->database('default', true);
+    }
+
+    public function index() {        
+        $this->load->view("common");
+        $this->load->model("welcome_model");
+        $user = $this->input->post("user");
+        $pass = $this->input->post("pass");
+        $data["user"] = $this->welcome_model->check($user,$pass);      
+        $data['index'] = $this->router->fetch_method();
+        $data['controller'] = $this->router->fetch_class();
+        $this->load->view("header", $data);
+        $this->load->view('index', $data);
+    }
+
 }

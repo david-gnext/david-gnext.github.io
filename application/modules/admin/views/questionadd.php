@@ -1,36 +1,8 @@
+<link href="<?php echo base_url();?>common/css/questionadd.css" rel="stylesheet" type="text/css">
 <?php
-session_start();
-require("../database.php");
-include("header.php");
-?>
-<link href="../quiz.css" rel="stylesheet" type="text/css">
-<link href="../css/questionadd.css" rel="stylesheet" type="text/css">
-<?php
-extract($_POST);
-
 echo "<div class=box><h2>Add Question </h2>";
-if (isset($_POST['submit'])) {
-    if ($_POST['submit'] == 'Save' || strlen($_POST['testid']) > 0) {
-        extract($_POST);
-        $file = $_FILES['image']['tmp_name'];
-        if (!isset($file)) {
-            echo 'Please select an Image';
-        } else {
-            $image_check = getimagesize($_FILES['image']['tmp_name']);
-            if ($image_check == false) {
-                echo 'Not a Valid Image';
-            } else {
-                $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-                $image_name = addslashes($_FILES['image']['name']);
-                mysqli_query($cn, "insert into mst_question(test_id,que_desc,image_name,image,ans1,ans2,ans3,ans4,true_ans) values ('$testid','$addque','{$image_name}','{$image}','$ans1','$ans2','$ans3','$ans4','$anstrue')");
-            }
-        }
-//        echo "<p align=center>Question Added Successfully.</p>";
-        ?>
-        <script> alert("Question Added Successfully");</script>
-        <?php
-        unset($_POST);
-    }
+if (isset($message)) {
+   echo $message;
 }
 ?>
 <SCRIPT LANGUAGE="JavaScript">
@@ -73,10 +45,9 @@ if (isset($_POST['submit'])) {
     <div class="input"><div class="spLeft">Select Test Name</div>
         <div class="spRight">
             <select name="testid" id="testid" >
-                <?php
-                $rs = mysqli_query($cn, "Select * from mst_test order by test_name");
-                while ($row = mysqli_fetch_array($rs)) {
-                    echo "<option value='" . $row['test_id'] . "' selected>" . $row['test_name'] . "</option>";
+                <?php                
+                foreach($allTest as $Test){
+                    echo "<option value='".$Test->test_id."' selected>". $Test->test_name."</option>";
                 }
                 ?>
             </select></div>

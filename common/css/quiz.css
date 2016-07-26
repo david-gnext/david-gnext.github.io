@@ -209,9 +209,13 @@ body {
     font-weight: bold;
     background: #000;
 }
-.style5 {color:#fff;
+.style5 {
+         color:#fff;
          border-bottom: 1px solid red;
          background: linear-gradient(20deg, #4f5964 0%, #5f6975 40%);
+}
+.style5 td {
+    padding : 2%;
 }
 .style6 {color: #757575;
          background:linear-gradient(180deg,#efefef 0%,#bbbbbb 100%);

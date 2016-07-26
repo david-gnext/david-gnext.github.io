@@ -34,7 +34,7 @@ $(document).ready(function () {
                 clearInterval(timeload);
             }
             $.ajax({
-                url: "quiz.php",
+                url: "",
                 data: data,
                 type: "POST",
                 success: function (d) {

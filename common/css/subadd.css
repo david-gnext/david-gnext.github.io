@@ -8,8 +8,9 @@ span {
   font-size: 20px;  
   color : #fff;
 }
-input {
+input[type=text] {
     padding : 5px;
+    margin : 5% 35% !important;
 }
 input[type=submit] {
     margin-top: 5%;
@@ -18,4 +19,8 @@ input[type=submit] {
     font-size: 15px;
     border-radius: 5px;
     padding : 5px 20px;
+}
+.message {
+    color : red;
+    font-size: 20px;
 }
