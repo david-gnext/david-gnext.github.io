@@ -26,7 +26,7 @@
                 <input type="password" name="pass"  placeholder="Type Password"><br>
                 <input type="submit" name="submit" value="Login" class="button">
             </form>
-            <span id="signup_text">You are not still a member.Click <a href="signup.php">Sign Up</a></span>
+            <span id="signup_text">You are not still a member.Click <a href="signup">Sign Up</a></span>
         </div>
     </body>
 </html>

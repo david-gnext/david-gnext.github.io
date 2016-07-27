@@ -1,7 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>New user signup </title>
 <script language="javascript">
 function check()
 {
@@ -77,25 +73,14 @@ function check()
   }
   
 </script>
-<link href="quiz.css" rel="stylesheet" type="text/css">
-<link href="css/signup.css" rel="stylesheet" type="text/css">
+<link href="<?= base_url() ?>css/signup.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<?php
-include("header.php");
-//for check form by php
-//if(isset($_POST['Submit'])){
-//    if(empty($_POST['lid'])){
-//        $err="Error ID";
-//    }
-//}
-?>
     <div class="login-box ">
-    <form name="form1" method="post" action="signupuser.php" onsubmit="return check();">
+    <form name="form1" method="post" action="signup/signupuser" onsubmit="return check();">
         <div class="box-field">
-            <h3>New User Signup</h3>
-            <img src="images/connected_multiple_big.jpg" width="131" height="50">
+            <h3>New User Signup</h3>                       
         </div>      
         <div class="box-field">
             <h5>Login Id </h5>

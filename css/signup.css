@@ -24,7 +24,7 @@ h5 {
     width: 100px;
 }
 textarea {
-    width: 48%;
+    width: 80%;
 }
 .button {    
     margin-left: 10%;
@@ -32,4 +32,8 @@ textarea {
 }
 input ,textarea{
     padding : 2% 3%;
+}
+
+input[type=submit] {
+    margin : 10% auto;
 }
